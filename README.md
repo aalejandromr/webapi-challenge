@@ -26,11 +26,22 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express is a library that helps create servers and restful applications.
+
+Express handles all network related things for us
+
 - [ ] Describe Middleware?
+
+A middleware is a piece of code running in between calls which
+can me a way of secure or enhance the application.
 
 - [ ] Describe a Resource?
 
+Everything is a resource.
+
 - [ ] What can the API return to help clients know if a request was successful?
+
+an status code 200.
 
 - [ ] How can we partition our application into sub-applications?
 
