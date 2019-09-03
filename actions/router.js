@@ -16,7 +16,12 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const action = await db.get(id);
-    res.status(200).json(action);
+    if (action) {
+      return res.status(200).json(action);
+    }
+    res.status(404).json({
+      error: "Action not found with given ID"
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -24,8 +29,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { description, notes, completed } = req.body;
+    const { description, notes, completed, project_id } = req.body;
     const newAction = await db.insert({
+      project_id,
       description,
       notes,
       completed
@@ -39,8 +45,9 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const { description, notes, completed } = req.body;
+    const { project_id, description, notes, completed } = req.body;
     const updatedAction = await db.update(id, {
+      project_id,
       description,
       notes,
       completed
